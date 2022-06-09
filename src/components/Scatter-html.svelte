@@ -8,16 +8,16 @@
 	const { data, xGet, yGet, xScale, yScale } = getContext('LayerCake');
 
 	/** @type {Number} [r=5] – The circle's radius. */
-	export let r = 5;
+	export let r = 4;
 
 	/** @type {String} [fill='#0cf'] – The circle's fill color. */
-	export let fill = '#0cf';
+	export let fill = 'rgba(169, 107, 44, 0.7)';
 
 	/** @type {String} [stroke='#000'] – The circle's stroke color. */
-	export let stroke = '#000';
+	export let stroke = '#0cf';
 
 	/** @type {Number} [strokeWidth=1] – The circle's stroke width. */
-	export let strokeWidth = 1;
+	export let strokeWidth = 0;
 </script>
 
 <div class="scatter-group">
