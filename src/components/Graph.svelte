@@ -53,11 +53,10 @@
 		expand to fill it.
 	*/
 	.chart-container {
-    min-width: 800px;
+    min-width: 600px;
 		width: 100%;
 		height: 100%;
     font-family: Arial, Helvetica, sans-serif;
-    padding: .25rem;
 	}
 </style>
 
@@ -66,7 +65,7 @@
 	<LayerCake
 		ssr={true}
 		percentRange={true}
-		padding={{ top: 0, right: 15, bottom: 20, left: 75 }}
+		padding={{ top: 20, right: 15, bottom: 20, left: 75 }}
 		x={xKey}
 		y={yKey}
 		xDomain={[0, 24 * 60 * 60]}
@@ -78,8 +77,8 @@
 	>
 		<Html>
 			<AxisX
-				ticks={[0, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24].map(d => d * 60 * 60)}
-				formatTick={d => `${Math.floor(d / 60 / 60)}:00`}
+				ticks={[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24].map(d => d * 60 * 60)}
+				formatTick={d => `${Math.floor(d / 60 / 60)}`}
 			/>
 			<AxisY/>
 			<Scatter/>

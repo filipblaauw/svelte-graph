@@ -52,15 +52,15 @@
   }
   .text {
     text-align: center;
-    margin-bottom: 1rem;
+    margin-bottom: 2rem;
     font-size: .9rem;
   }
 	.graph {
 		width: 100%;
-		min-height: 600px;
+		min-height: 100%;
 		height: 600px;
 		overflow-x: scroll;
-    padding-bottom: 4rem;
+    overflow-y: hidden;
 	}
   .loading {
     display: flex;
@@ -77,7 +77,7 @@
       Mår på viltkamera
     </div>
     <div class="text">
-      Hver prikk representerer et videklipp hvor måren er registrert på viltkamera.
+      Hver prikk representerer et videklipp og klokkeslett hvor måren er registrert på viltkamera.
     </div>
   </header>
 	<div class="graph">

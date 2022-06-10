@@ -26,7 +26,7 @@
 	export let ticks = undefined;
 
 	/** @type {Number} [yTick=7] – The distance from the baseline to place each tick value, in pixels. */
-	export let yTick = 7;
+	export let yTick = -10;
 
 	$: isBandwidth = typeof $xScale.bandwidth === 'function';
 
@@ -48,7 +48,7 @@
 		{/if}
 		<div
 			class='tick tick-{ i }'
-			style='left:{$xScale(tick) + (isBandwidth ? $xScale.bandwidth() / 2 : 0)}%;top:100%;'>
+			style='left:{$xScale(tick) + (isBandwidth ? $xScale.bandwidth() / 2 : 0)}%;top:-2%;'>
 			<div
 				class="text"
 				style='top:{(yTick)}px;'>{formatTick(tick)}</div>
