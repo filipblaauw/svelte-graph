@@ -41,7 +41,7 @@
 	
 
 	const allDays = timeDay.range(new Date(Date.UTC(minDate[0], minDate[1] - 1, minDate[2])), new Date(Date.UTC(maxDate[0], maxDate[1] - 1, maxDate[2] + 1)))
-		.map(d => d.toISOString().split('T')[0]).sort().reverse();
+		.map(d => d.toISOString().split('T')[0]).sort();
 
 </script>
 
