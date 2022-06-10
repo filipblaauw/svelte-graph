@@ -9,4 +9,4 @@ exec(
 	`aws s3 sync dist/ s3://${bucketName}${path}`
 );
 
-console.log(`\ndone: ${path}`);
+console.log(`\ndone: dev.blaauw.photo${path}`);
