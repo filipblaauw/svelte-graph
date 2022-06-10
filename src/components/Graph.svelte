@@ -7,10 +7,8 @@
 	import AxisY from './AxisY-html.svelte';
 	import Scatter from './Scatter-html.svelte';
 
-	//import data from './days.js';
   export let data;
 
-    
 	const xKey = 'seconds';
 	const yKey = 'day';
 
@@ -28,8 +26,6 @@
 		obj.timestring = d
 		return obj;
 	});
-	
-
 
 	/* --------------------------------------------
 	 * Generate a range of days in between the min and max
@@ -46,8 +42,6 @@
 
 	const allDays = timeDay.range(new Date(Date.UTC(minDate[0], minDate[1] - 1, minDate[2])), new Date(Date.UTC(maxDate[0], maxDate[1] - 1, maxDate[2] + 1)))
 		.map(d => d.toISOString().split('T')[0]).sort().reverse();
-
-	console.log(allDays)
 
 </script>
 
