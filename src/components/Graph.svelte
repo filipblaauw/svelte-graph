@@ -63,6 +63,7 @@
 		width: 100%;
 		height: 100%;
     font-family: Arial, Helvetica, sans-serif;
+    padding: .25rem;
 	}
 </style>
 

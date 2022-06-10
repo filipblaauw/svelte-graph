@@ -54,9 +54,7 @@
 		min-height: 600px;
 		height: 600px;
 		overflow-x: scroll;
-		display: flex;
-		justify-content: center;
-		align-items: center;
+    padding-bottom: 4rem;
 	}
 </style>
 <main>
@@ -66,6 +64,9 @@
     </div>
     <div class="heading">
       Mår på viltkamera
+    </div>
+    <div class="text">
+      Hver prikk representerer et videklipp fra viltkamera hvor måren er oppdaget.
     </div>
   </header>
 	<div class="graph">
