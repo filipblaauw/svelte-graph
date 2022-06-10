@@ -27,7 +27,8 @@
 
 	main {
 		font-family: Arial, Helvetica, sans-serif;
-		padding-top: 1rem;
+		padding-top: .5rem;
+    color: #3a3a3a;
 	}
   header {
     display: flex;
@@ -45,9 +46,14 @@
     align-items: center;
     padding: 0 1rem;
 		justify-content: center;
-		padding: 1rem;
+		padding: .25rem;
 		font-family: "Kaushan Script";
 		font-size: 2rem;
+  }
+  .text {
+    text-align: center;
+    margin-bottom: 1rem;
+    font-size: .9rem;
   }
 	.graph {
 		width: 100%;
@@ -56,24 +62,31 @@
 		overflow-x: scroll;
     padding-bottom: 4rem;
 	}
+  .loading {
+    display: flex;
+    justify-content: center;
+    font-size: .9rem;
+  }
 </style>
 <main>
   <header>
     <div class="image">
-      <img src="https://media.istockphoto.com/vectors/vector-european-pine-marten-illustration-vector-id1253758855?b=1&k=20&m=1253758855&s=170667a&w=0&h=Rn1EP-cYJ1cLSPbwaB3m-VwzLbDgpGzATYRMaP-inIQ=" alt="">
+      <img src="marten.jpg" alt="">
     </div>
     <div class="heading">
       Mår på viltkamera
     </div>
     <div class="text">
-      Hver prikk representerer et videklipp fra viltkamera hvor måren er oppdaget.
+      Hver prikk representerer et videklipp hvor måren er registrert på viltkamera.
     </div>
   </header>
 	<div class="graph">
 		{#await datapromise}
-			laster..
+			<div class="loading">
+        Laster...
+      </div>
 			{:then data}
-			<Graph {data}></Graph>
+      <Graph {data}></Graph>
 		{/await}
 	</div>
 	
