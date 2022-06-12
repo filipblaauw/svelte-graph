@@ -3,13 +3,13 @@
 
 
 	async function fetchData() {
-		const response = await fetch("https://sa-sheets2json.herokuapp.com/api?id=1HIKtlEkxsT_zRaQfAkJbkWTI8_5fvaFnSwy8-4w0yBY&sheet=output&rows=false");
+		const response = await fetch("https://sa-sheets2json.herokuapp.com/api?id=1HIKtlEkxsT_zRaQfAkJbkWTI8_5fvaFnSwy8-4w0yBY&sheet=time&rows=false");
 		const dates = await response.json();
 		if (response.ok) {
-			let data = dates.columns.dato.join('\r\n');
+			let data = dates.columns.datetime.join('\r\n');
 			return data;
 		} else {
-			throw new Error("data");
+			throw new Error("Could not fetch data");
 		}
 	}
 
@@ -17,12 +17,6 @@
 </script>
 
 <style>
-	/*
-		The wrapper div needs to have an explicit width and height in CSS.
-		It can also be a flexbox child or CSS grid element.
-		The point being it needs dimensions since the <LayerCake> element will
-		expand to fill it.
-	*/
 	@import url('https://fonts.googleapis.com/css2?family=Kaushan+Script&display=swap');
 
 	main {

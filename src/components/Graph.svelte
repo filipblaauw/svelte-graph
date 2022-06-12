@@ -11,15 +11,12 @@
 
 	const xKey = 'seconds';
 	const yKey = 'day';
-
-	const r = 4;
-	const padding = 2;
+	const padding = 1;
 
 	const daysTransformed = data.split('\n').map(d => {
 		const obj = {};
-		const parts = d.split('T');
-		
-		const time = parts[1].replace('Z', '').split(':').map(q => +q);
+		const parts = d.split(' ');
+		const time = parts[1].split(':').map(q => +q);
 		
 		obj[xKey] = time[0] * 60 * 60 + time[1] * 60 + time[2];
 		obj[yKey] = parts[0];
@@ -36,9 +33,8 @@
 	});
 
 	// Convert to string even though it is one to make Typescript happy
-	const minDate = extents.x[0].toString().split('T')[0].split('-').map(d => +d);
-	const maxDate = extents.x[1].toString().split('T')[0].split('-').map(d => +d);
-	
+	const minDate = extents.x[0].toString().split(' ')[0].split('-').map(d => +d);
+	const maxDate = extents.x[1].toString().split(' ')[0].split('-').map(d => +d);
 
 	const allDays = timeDay.range(new Date(Date.UTC(minDate[0], minDate[1] - 1, minDate[2])), new Date(Date.UTC(maxDate[0], maxDate[1] - 1, maxDate[2] + 1)))
 		.map(d => d.toISOString().split('T')[0]).sort();
@@ -46,12 +42,6 @@
 </script>
 
 <style>
-	/*
-		The wrapper div needs to have an explicit width and height in CSS.
-		It can also be a flexbox child or CSS grid element.
-		The point being it needs dimensions since the <LayerCake> element will
-		expand to fill it.
-	*/
 	.chart-container {
     min-width: 600px;
 		width: 100%;
@@ -65,7 +55,7 @@
 	<LayerCake
 		ssr={true}
 		percentRange={true}
-		padding={{ top: 20, right: 15, bottom: 20, left: 75 }}
+		padding={{ top: 20, right: 15, bottom: 10, left: 75 }}
 		x={xKey}
 		y={yKey}
 		xDomain={[0, 24 * 60 * 60]}
