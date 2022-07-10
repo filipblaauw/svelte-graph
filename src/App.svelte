@@ -2,8 +2,8 @@
 	import Graph from "./components/Graph.svelte";
 
 
-	async function fetchData() {
-		const response = await fetch("https://sa-sheets2json.herokuapp.com/api?id=1HIKtlEkxsT_zRaQfAkJbkWTI8_5fvaFnSwy8-4w0yBY&sheet=time&rows=false");
+	async function fetchMay() {
+		const response = await fetch("https://sa-sheets2json.herokuapp.com/api?id=1HIKtlEkxsT_zRaQfAkJbkWTI8_5fvaFnSwy8-4w0yBY&sheet=mai&rows=false");
 		const dates = await response.json();
 		if (response.ok) {
 			let data = dates.columns.datetime.join('\r\n');
@@ -12,8 +12,31 @@
 			throw new Error("Could not fetch data");
 		}
 	}
+	const mayPromise = fetchMay();
 
-	const datapromise = fetchData();
+  async function fetchJune() {
+		const response = await fetch("https://sa-sheets2json.herokuapp.com/api?id=1HIKtlEkxsT_zRaQfAkJbkWTI8_5fvaFnSwy8-4w0yBY&sheet=juni&rows=false");
+		const dates = await response.json();
+		if (response.ok) {
+			let data = dates.columns.datetime.join('\r\n');
+			return data;
+		} else {
+			throw new Error("Could not fetch data");
+		}
+	}
+	const junePromise = fetchJune();
+
+  async function fetchJuly() {
+		const response = await fetch("https://sa-sheets2json.herokuapp.com/api?id=1HIKtlEkxsT_zRaQfAkJbkWTI8_5fvaFnSwy8-4w0yBY&sheet=juli&rows=false");
+		const dates = await response.json();
+		if (response.ok) {
+			let data = dates.columns.datetime.join('\r\n');
+			return data;
+		} else {
+			throw new Error("Could not fetch data");
+		}
+	}
+	const julyPromise = fetchJuly();
 </script>
 
 <style>
@@ -23,6 +46,7 @@
 		font-family: Arial, Helvetica, sans-serif;
 		padding-top: .5rem;
     color: #3a3a3a;
+    text-align: center;
 	}
   header {
     display: flex;
@@ -74,8 +98,32 @@
       Hver prikk representerer et videklipp og klokkeslett hvor måren er registrert på viltkamera.
     </div>
   </header>
-	<div class="graph">
-		{#await datapromise}
+
+  <h2>Juli</h2>
+  <div class="graph">
+		{#await julyPromise}
+			<div class="loading">
+        Laster...
+      </div>
+			{:then data}
+      <Graph {data}></Graph>
+		{/await}
+	</div>
+
+	<h2>Juni</h2>
+  <div class="graph">
+		{#await junePromise}
+			<div class="loading">
+        Laster...
+      </div>
+			{:then data}
+      <Graph {data}></Graph>
+		{/await}
+	</div>
+
+  <h2>Mai</h2>
+  <div class="graph">  
+		{#await mayPromise}
 			<div class="loading">
         Laster...
       </div>
