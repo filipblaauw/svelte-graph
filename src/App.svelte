@@ -2,13 +2,21 @@
   import Graph from "./components/Graph.svelte";
   import { onMount } from "svelte";
 
+  let selectedAnimal = "marten";
+
+  function handleAnimalSelection(animal) {
+    selectedAnimal = animal;
+  }
+
   let months = [
-    "mai_2023",
-    "april_2023",
-    "august_2022",
-    "juli_2022",
-    "juni_2022",
-    "mai_2022",
+    "fox_mai_2023",
+    "fox_april_2023",
+    "marten_mai_2023",
+    "marten_april_2023",
+    "marten_august_2022",
+    "marten_juli_2022",
+    "marten_juni_2022",
+    "marten_mai_2022",
   ];
   let monthData = {};
 
@@ -19,7 +27,11 @@
     const dates = await response.json();
     if (response.ok) {
       if (dates.columns && dates.columns.datetime) {
-        return dates.columns.datetime.join("\r\n");
+        const animalPrefix = month.split("_")[0];
+        return {
+          prefix: animalPrefix,
+          data: dates.columns.datetime.join("\r\n"),
+        };
       } else {
         return "";
       }
@@ -63,8 +75,8 @@
 
   function formatMonth(month) {
     const parts = month.split("_");
-    const year = parts[1];
-    const monthName = parts[0];
+    const year = parts[2];
+    const monthName = parts[1];
     return `${monthName} ${year}`;
   }
 
@@ -79,54 +91,63 @@
   });
 </script>
 
-<main>
-  <header>
-    <div class="image">
-      <img src="marten.jpg" alt="" />
-    </div>
-    <div class="heading">Mår på viltkamera</div>
-  </header>
-
-  {#each months as month}
-    <div class="month">
-      <h2>{formatMonth(month)}</h2>
-      {#if monthData[month]}
-        {#await monthData[month] then data}
-          {#if month in monthData}
-            <p class="text"><b>Timer med flest triggere:</b></p>
-            {#each findHoursWithMostEvents(data) as hour}
-              <span>kl {hour}</span>
-            {/each}
-          {/if}
-        {/await}
+<header>
+  <div class={`cover ${selectedAnimal}`}>
+    <div class="heading">
+      {#if selectedAnimal === "marten"}
+        Mår på viltkamera
+      {:else}
+        Rev på viltkamera
       {/if}
-      <div class="graph">
-        {#if monthData[month]}
-          {#await monthData[month]}
-            <div class="loading">Loading...</div>
-          {:then data}
-            {#if month in monthData}
-              {#if data.length > 0}
-                <Graph {data} />
-              {:else}
-                <p>No data available</p>
-              {/if}
-            {/if}
-          {/await}
-        {/if}
-      </div>
     </div>
+    <div class="buttons">
+      <button
+        class="button"
+        class:selected={selectedAnimal === "marten"}
+        on:click={() => handleAnimalSelection("marten")}>Mår</button
+      >
+      <button
+        class="button"
+        class:selected={selectedAnimal === "fox"}
+        on:click={() => handleAnimalSelection("fox")}>Rev</button
+      >
+    </div>
+  </div>
+</header>
+<main>
+  {#each months as month}
+    {#if monthData[month]}
+      {#await monthData[month] then data}
+        {#if month in monthData && data}
+          {#if data.prefix === selectedAnimal && data.data.length > 0}
+            <div class="month">
+              <h2>{formatMonth(month)}</h2>
+              <p class="text"><b>Timer med flest triggere:</b></p>
+              {#each findHoursWithMostEvents(data.data) as hour}
+                <span>kl {hour}</span>
+              {/each}
+              <div class="graph">
+                <Graph data={data.data} />
+              </div>
+            </div>
+          {/if}
+        {/if}
+      {/await}
+    {/if}
   {/each}
 </main>
 
 <style>
   @import url("https://fonts.googleapis.com/css2?family=Kaushan+Script&display=swap");
-
+  :global(body) {
+    margin: 0;
+    padding: 0;
+  }
   main {
     font-family: -apple-system, -apple-system, BlinkMacSystemFont, "Segoe UI",
       Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
       sans-serif;
-    padding-top: 0.5rem;
+    padding: 0.5rem;
     color: #3a3a3a;
   }
   header {
@@ -134,20 +155,33 @@
     align-items: center;
     flex-direction: column;
   }
-  .image {
-    max-width: 200px;
-  }
-  .image img {
+  .cover {
+    display: flex;
+    min-height: 300px;
     width: 100%;
+    justify-content: space-between;
+    align-items: flex-end;
+    background-size: cover;
+    background-position: center;
+    margin-bottom: 1rem;
+  }
+  @media (max-width: 600px) {
+    .cover {
+      min-height: 180px;
+    }
+  }
+  .cover.marten {
+    background-image: url("//dev.blaauw.photo/marten/marten.jpg");
+  }
+  .cover.fox {
+    background-image: url("//dev.blaauw.photo/marten/fox.jpg");
   }
   .heading {
-    display: flex;
-    align-items: center;
-    padding: 0 1rem;
-    justify-content: center;
-    padding: 0.25rem;
     font-family: "Kaushan Script";
-    font-size: 2rem;
+    font-size: 1.8rem;
+    color: #ffffff;
+    padding: 0.5rem;
+    line-height: 1;
   }
   .text {
     text-align: left;
@@ -180,9 +214,34 @@
     font-weight: 800;
     text-transform: uppercase;
   }
-  .loading {
-    display: flex;
-    justify-content: center;
-    font-size: 0.9rem;
+  .buttons {
+    padding: 0.5rem;
+  }
+  .button {
+    display: inline-block;
+    padding: 6px 12px;
+    font-size: 14px;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    color: #999999;
+    background-color: #555555;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  .selected {
+    background-color: #333333;
+    color: #ffffff;
+  }
+
+  .button:hover {
+    background-color: #444444;
+    color: #dedede;
+  }
+
+  .button:active {
+    background-color: #222222;
   }
 </style>
