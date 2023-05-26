@@ -122,11 +122,11 @@
           {#if data.prefix === selectedAnimal && data.data.length > 0}
             <div class="month">
               <h2>{formatMonth(month)}</h2>
-              <p class="text"><b>Timer med flest triggere:</b></p>
+              <p class="text"><b>Tidspunkt med flest triggere:</b></p>
               {#each findHoursWithMostEvents(data.data) as hour}
                 <span>kl {hour}</span>
               {/each}
-              <div class="graph">
+              <div class="graph {selectedAnimal}">
                 <Graph data={data.data} />
               </div>
             </div>
@@ -243,5 +243,9 @@
 
   .button:active {
     background-color: #222222;
+  }
+
+  :global(.fox .circle) {
+    background-color: rgba(200, 61, 6, 0.7) !important;
   }
 </style>
