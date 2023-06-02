@@ -9,6 +9,8 @@
   }
 
   let months = [
+    "fox_juni_2023",
+    "marten_juni_2023",
     "fox_mai_2023",
     "fox_april_2023",
     "marten_mai_2023",
