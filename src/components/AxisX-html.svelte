@@ -59,7 +59,6 @@
         (isBandwidth ? $xScale.bandwidth() / 2 : 0)}%;top:-2%;"
     >
       <div class="text" style="top:{yTick}px;">
-        <span>kl</span>
         {formatTick(tick)}
       </div>
     </div>
@@ -83,7 +82,7 @@
   }
   .tick {
     font-size: 0.725em;
-    font-weight: 200;
+    font-weight: 600;
   }
 
   .gridline {
@@ -102,14 +101,6 @@
     position: relative;
     white-space: nowrap;
     transform: translateX(-50%);
-  }
-  .tick .text span {
-    display: none;
-  }
-  @media screen and (min-width: 780px) {
-    .tick .text span {
-      display: inline;
-    }
   }
   /* This looks a little better at 40 percent than 50 */
   .axis.snapTicks .tick:last-child {

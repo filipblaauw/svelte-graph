@@ -53,7 +53,7 @@
     .sort();
 </script>
 
-<div class="chart-container">
+<div class="chart-container" style={`height: calc(${allDays.length * 20 + 100}px);`}>
   <LayerCake
     ssr={true}
     percentRange={true}
@@ -63,7 +63,7 @@
     xDomain={[0, 24 * 60 * 60]}
     yDomain={allDays}
     xScale={scaleTime()}
-    yScale={scaleBand().paddingInner([0.05]).round(true)}
+    yScale={scaleBand().paddingInner([0.05]).round(false)}
     xPadding={[padding, padding]}
     data={daysTransformed}
   >
@@ -84,8 +84,9 @@
 <style>
   .chart-container {
     min-width: 600px;
-    width: 100%;
-    height: 100%;
-    font-family: Arial, Helvetica, sans-serif;
+    width: 99%;
+    margin: 0 auto;
+    
+
   }
 </style>

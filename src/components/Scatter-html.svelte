@@ -50,13 +50,13 @@
   export let r = 6;
 
   /** @type {String} [fill='#0cf'] – The circle's fill color. */
-  export let fill = "rgba(150, 100, 60, 0.7)";
+  export let fill = "rgba(150, 100, 60, 0.65)";
 
   /** @type {String} [stroke='#000'] – The circle's stroke color. */
-  export let stroke = "#0cf";
+  export let stroke = "rgba(150, 100, 60, 0.9)";
 
   /** @type {Number} [strokeWidth=1] – The circle's stroke width. */
-  export let strokeWidth = 0;
+  export let strokeWidth = 1;
 
   
 </script>
@@ -109,5 +109,6 @@
     background: #f2f2f2;
     border-radius: 0.25em;
     z-index: 999;
+    border: 1px solid #d2d2d2;
   }
 </style>

@@ -153,9 +153,7 @@
     padding: 0;
   }
   main {
-    font-family: -apple-system, -apple-system, BlinkMacSystemFont, "Segoe UI",
-      Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
-      sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
     padding: 0.5rem;
     color: #3a3a3a;
   }
@@ -209,12 +207,10 @@
   }
   .month {
     padding: 1em 0;
-    border-bottom: 1px solid #bebebe;
   }
   .graph {
     width: 100%;
-    min-height: 100%;
-    height: 600px;
+    
     overflow-y: hidden;
   }
   h2 {
@@ -254,7 +250,5 @@
     background-color: #222222;
   }
 
-  :global(.fox .circle) {
-    background-color: rgba(200, 61, 6, 0.7) !important;
-  }
+
 </style>
