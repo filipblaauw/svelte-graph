@@ -50,7 +50,7 @@
   export let r = 6;
 
   /** @type {String} [fill='#0cf'] – The circle's fill color. */
-  export let fill = "rgba(150, 100, 60, 0.65)";
+  export let fill = "rgba(150, 100, 60, 0.6)";
 
   /** @type {String} [stroke='#000'] – The circle's stroke color. */
   export let stroke = "rgba(150, 100, 60, 0.9)";
@@ -93,6 +93,7 @@
     position: absolute;
     transform: translate(-50%, -50%);
     border-radius: 50%;
+    mix-blend-mode: multiply;
   }
   .popup {
     position: absolute;
