@@ -50,13 +50,13 @@
   export let r = 6;
 
   /** @type {String} [fill='#0cf'] – The circle's fill color. */
-  export let fill = "rgba(150, 100, 60, 0.6)";
+  export let fill = "rgba(150, 100, 60, 0.8)";
 
   /** @type {String} [stroke='#000'] – The circle's stroke color. */
   export let stroke = "rgba(150, 100, 60, 0.9)";
 
   /** @type {Number} [strokeWidth=1] – The circle's stroke width. */
-  export let strokeWidth = 1;
+  export let strokeWidth = 0;
 
   
 </script>
@@ -72,7 +72,7 @@
       tabindex="0"
       style="
 				left: {$xGet(d) + ($xScale.bandwidth ? $xScale.bandwidth() / 2 : 0)}%;
-				top: {$yGet(d) + ($yScale.bandwidth ? $yScale.bandwidth() / 2 : 0)}%;
+				top: {$yGet(d) + ($yScale.bandwidth ? $yScale.bandwidth() / 1.85 : 0)}%;
 				width: {r * 2}px;
 				height: {r * 2}px;
 				background-color: {fill};
