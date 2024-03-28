@@ -57,10 +57,10 @@
   <LayerCake
     ssr={true}
     percentRange={true}
-    padding={{ top: 30, right: 15, bottom: 10, left: 30 }}
+    padding={{ top: 30, right: 40, bottom: 10, left: 25 }}
     x={xKey}
     y={yKey}
-    xDomain={[0, 24 * 60 * 60]}
+    xDomain={[0, 23 * 60 * 60]}
     yDomain={allDays}
     xScale={scaleTime()}
     yScale={scaleBand().paddingInner([0.05]).round(false)}
@@ -71,7 +71,7 @@
       <AxisX
         ticks={[
           0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19,
-          20, 21, 22, 23, 24,
+          20, 21, 22, 23,
         ].map((d) => d * 60 * 60)}
         formatTick={(d) => `${Math.floor(d / 60 / 60)}`}
       />
@@ -84,9 +84,7 @@
 <style>
   .chart-container {
     min-width: 600px;
-    width: 99%;
+    width: 95%;
     margin: 0 auto;
-    
-
   }
 </style>

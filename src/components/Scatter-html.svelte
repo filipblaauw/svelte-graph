@@ -14,7 +14,7 @@
     const [datePart, timePart] = dateTimeString.split(' ');
     // Extract time part
     const [hours, minutes] = timePart.split(':');
-    return `kl ${hours}:${minutes}`;
+    return `${hours}:${minutes}`;
   }
 
   function handleMouseOver(event, d) {
@@ -80,7 +80,7 @@
 			"
     />
     <div class="popup" style="
-				left: calc({$xGet(d) + ($xScale.bandwidth ? $xScale.bandwidth() / 2 : 0)}% - 35px);
+				left: calc({$xGet(d) + ($xScale.bandwidth ? $xScale.bandwidth() / 2 : 0)}% - 25px);
 				top: calc({$yGet(d) + ($yScale.bandwidth ? $yScale.bandwidth() / 2 : 0)}% - 30px);
 			">
       {popupTime}
@@ -100,7 +100,7 @@
     font-family: -apple-system, -apple-system, BlinkMacSystemFont, "Segoe UI",
       Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
       sans-serif;
-    width: 70px;
+    width: 50px;
     text-align: center;
     display: none;
     padding: 0.2em 0.5em;

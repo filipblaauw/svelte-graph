@@ -59,7 +59,7 @@
         (isBandwidth ? $xScale.bandwidth() / 2 : 0)}%;top:-2%;"
     >
       <div class="text" style="top:{yTick}px;">
-        {formatTick(tick)}
+        <span>kl </span>{formatTick(tick)}
       </div>
     </div>
   {/each}
@@ -101,6 +101,17 @@
     position: relative;
     white-space: nowrap;
     transform: translateX(-50%);
+    font-weight: 400;
+    letter-spacing: -0.5px;
+  }
+  .tick .text span {
+    font-weight: 400;
+    letter-spacing: -0.5px;
+  }
+   @media (max-width: 800px) {
+    .tick .text span {
+      display: none;
+    }
   }
   /* This looks a little better at 40 percent than 50 */
   .axis.snapTicks .tick:last-child {

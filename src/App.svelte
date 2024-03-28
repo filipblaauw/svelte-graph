@@ -191,7 +191,6 @@
     line-height: 1;
   }
   .text {
-    text-align: left;
     margin: 0;
     font-size: 0.9rem;
     margin-bottom: 0.25em;
@@ -207,6 +206,7 @@
   }
   .month {
     padding: 1em 0;
+    text-align: center;
   }
   .graph {
     width: 100%;
