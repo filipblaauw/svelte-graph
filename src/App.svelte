@@ -42,6 +42,19 @@
   let monthData = {};
 
   async function fetchDataForMonth(month) {
+    const cachedData = localStorage.getItem(`data_${month}`);
+    if (cachedData) {
+      const parsedData = JSON.parse(cachedData);
+      const cachedTime = parsedData.timestamp;
+      const currentTime = new Date().getTime();
+      const twelveHours = 12 * 60 * 60 * 1000;
+
+      if (currentTime - cachedTime < twelveHours) {
+        console.log(`Serving cached data for ${month}`);
+        return parsedData.data;
+      }
+    }
+
     const response = await fetch(
       `https://sa-sheets2json.herokuapp.com/api?id=1HIKtlEkxsT_zRaQfAkJbkWTI8_5fvaFnSwy8-4w0yBY&sheet=${month}&rows=false`
     );
@@ -49,10 +62,16 @@
     if (response.ok) {
       if (dates.columns && dates.columns.datetime) {
         const animalPrefix = month.split("_")[0];
-        return {
+        const result = {
           prefix: animalPrefix,
           data: dates.columns.datetime.join("\r\n"),
         };
+        const cacheData = {
+          timestamp: new Date().getTime(),
+          data: result,
+        };
+        localStorage.setItem(`data_${month}`, JSON.stringify(cacheData));
+        return result;
       } else {
         return "";
       }
@@ -242,34 +261,38 @@
     text-transform: uppercase;
   }
   .buttons {
-    padding: 0.5rem;
+    display: flex;
+    margin: 0.5rem;
   }
   .button {
-    display: inline-block;
+    margin: 0 0.25rem;
     padding: 6px 12px;
     font-size: 14px;
     font-weight: bold;
     text-align: center;
     text-decoration: none;
-    color: #999999;
-    background-color: #555555;
+    background-color: #fff;
+    color: #222;
     border: none;
     border-radius: 4px;
     cursor: pointer;
+    opacity: 0.8;
+  }
+  .button:last-child {
+    margin-right: 0;
   }
 
   .selected {
-    background-color: #333333;
-    color: #ffffff;
+    opacity: 1;
   }
 
   .button:hover {
-    background-color: #444444;
-    color: #dedede;
+    background-color: #d3d3d3;
+    opacity: 0.9;
   }
 
   .button:active {
-    background-color: #222222;
+    background-color: #fff;
   }
 
 
