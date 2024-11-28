@@ -2,13 +2,24 @@
   import Graph from "./components/Graph.svelte";
   import { onMount } from "svelte";
 
-  let selectedAnimal = "marten";
+  let selectedAnimal = "eagle";
+  let norskNavn = "Ørn";
 
   function handleAnimalSelection(animal) {
     selectedAnimal = animal;
+    if(selectedAnimal === 'eagle') {
+      norskNavn = "Ørn"
+    }
+    if(selectedAnimal === 'marten') {
+      norskNavn = "Mår"
+    }
+    if(selectedAnimal === 'fox') {
+      norskNavn = "Rev"
+    }
   }
 
   let months = [
+    "eagle_november_2024",
     "marten_april_2024",
     "marten_mars_2024",
     "marten_februar_2024",
@@ -104,13 +115,20 @@
 <header>
   <div class={`cover ${selectedAnimal}`}>
     <div class="heading">
-      {#if selectedAnimal === "marten"}
+      {#if selectedAnimal === "eagle"}
+        Ørn på viltkamera
+      {:else if selectedAnimal === "marten"}
         Mår på viltkamera
-      {:else}
+      {:else if selectedAnimal === "fox"}
         Rev på viltkamera
       {/if}
     </div>
     <div class="buttons">
+      <button
+        class="button"
+        class:selected={selectedAnimal === "eagle"}
+        on:click={() => handleAnimalSelection("eagle")}>Ørn</button
+      >
       <button
         class="button"
         class:selected={selectedAnimal === "marten"}
@@ -131,7 +149,7 @@
         {#if month in monthData && data}
           {#if data.prefix === selectedAnimal && data.data.length > 0}
             <div class="month">
-              <h2>{formatMonth(month)}</h2>
+              <h2>{norskNavn}, {formatMonth(month)}</h2>
               <p class="text"><b>Tidspunkt med flest triggere:</b></p>
               {#each findHoursWithMostEvents(data.data) as hour}
                 <span>kl {hour}</span>
@@ -183,6 +201,9 @@
   }
   .cover.fox {
     background-image: url("//dev.blaauw.photo/marten/fox.jpg");
+  }
+  .cover.eagle {
+    background-image: url("//dev.blaauw.photo/marten/eagle.jpg");
   }
   .heading {
     font-family: "Kaushan Script";
