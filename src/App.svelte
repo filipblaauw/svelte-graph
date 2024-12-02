@@ -19,6 +19,7 @@
   }
 
   let months = [
+    "eagle_desember_2024",
     "eagle_november_2024",
     "marten_april_2024",
     "marten_mars_2024",
